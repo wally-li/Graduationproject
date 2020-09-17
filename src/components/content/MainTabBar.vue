@@ -15,20 +15,7 @@
             </div>
           </template>
         </tab-bar-item>
-        <!-- 分类 -->
-        <tab-bar-item  to-path="/category" :activeColor="activeColor">
-          <template #item-icon>
-            <img src="~assets/img/tabbar/category.svg" alt="">
-          </template>
-          <template #item-icon-active>
-            <img src="~assets/img/tabbar/category_active.svg" alt="">
-          </template>
-           <template #item-text>
-            <div class="item-text">
-              分类
-            </div>
-          </template>
-        </tab-bar-item>
+
         <!-- 购物车 -->
         <tab-bar-item to-path="/shopcart"  :activeColor="activeColor">
           <template #item-icon>
