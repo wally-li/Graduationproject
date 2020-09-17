@@ -163,6 +163,7 @@ export default {
     bottom:65px;
   }
   .detail-page .toast{
+    text-align: center;
     position:fixed;
     left:50%;
     top:50%;
