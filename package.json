@@ -7,7 +7,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "@better-scroll/core": "^2.0.3",
+    "@better-scroll/core":  "^2.0.3",
     "@better-scroll/observe-dom": "^2.0.3",
     "@better-scroll/pull-up": "^2.0.3",
     "axios": "^0.20.0",
