@@ -19,6 +19,7 @@
     </scroll>
     <detail-bottom-bar @addToShop="addToShop"></detail-bottom-bar>
     <back-top @click.native="backTop" v-show="toTopIsShow"></back-top>
+    <toast :message="message" :is-show="isShow"></toast>
   </div>
 </template>
 
@@ -32,11 +33,13 @@ import GoodsParams from './childcpn/GoodsParams'
 import Recommend from './childcpn/Recommend'
 import DetailBottomBar from './childcpn/DetailBottomBar'
 import BackTop from "components/content/backTop/backTop"
-
+import Toast from  "components/common/Toast/Toast"
 
 import Scroll from 'components/common/Scroll/Scroll'
 import{backTopMixin} from "@/common/mixin"
 import {detailGetData,GoodsInfo,Shop,GoodsParam,getRecommend} from  "network/detail"
+
+import {mapActions} from 'vuex'
 export default {
   name:"Detail",
   components:{
@@ -49,7 +52,8 @@ export default {
     GoodsParams,
     Recommend,
     DetailBottomBar,
-    BackTop
+    BackTop,
+    Toast
   },
   mixins:[backTopMixin],
   created() {
@@ -83,10 +87,13 @@ export default {
       paramInfo:{},
       recommendList:[],
       scrollToY:[],
-      currentIndex:0
+      currentIndex:0,
+      isShow:false,
+      message:""
     }
   },
   methods:{
+    ...mapActions(["addToList"]),
     imgLoad(){
       this.$refs.scroll.scroll.refresh();
       this.scrollToY.push(0,-this.$refs.goodsParams.$el.offsetTop,-this.$refs.recommend.$el.offsetTop);
@@ -117,11 +124,20 @@ export default {
       productInfo.title = this.GoodsInfo.title
       productInfo.desc = this.GoodsInfo.desc;
       productInfo.newPrice = this.GoodsInfo.nowPrice;
-      this.$store.commit("addToList",productInfo);
-      console.log(this.$store.state);
-    }
+      // this.$store.dispatch("addToList",productInfo).then(res=>{
+      //   console.log(res)
+      // });
+      this.addToList(productInfo).then(res=>
+      {
+        this.isShow = true;
+        this.message = res;
+        setTimeout(() => {
+          this.isShow = false;
+        }, 1500);
+      })
   },
 
+}
 }
 </script>
 
@@ -145,5 +161,15 @@ export default {
   }
   .detail-page .back-top{
     bottom:65px;
+  }
+  .detail-page .toast{
+    position:fixed;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+    padding:10px 10px;
+    background-color: rgba(0,0,0,.8);
+    border-radius:10px;
+    color:#fff;
   }
 </style>

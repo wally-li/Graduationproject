@@ -11,6 +11,13 @@ export default{
       state.cartLists.push(productList)
     }
   },
+  addCount(state,payload){
+    const obj = state.cartLists.find(item=>item.iid==payload);
+    obj.count++
+  },
+  addListItem(state,payload){
+    state.cartLists.push(payload);
+  },
   changeChecked(state,payload)
   {
     state.cartLists[payload].isChecked = !state.cartLists[payload].isChecked;

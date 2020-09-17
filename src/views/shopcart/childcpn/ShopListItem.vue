@@ -5,7 +5,7 @@
       <check-item-button @changeChecked="changeChecked"  :is-checked="shopInfo.isChecked"></check-item-button>
     </div>
     <div class="item-img">
-      <img :src="shopInfo.imgURL" alt="" @load="imgLoad">
+      <img v-lazy="shopInfo.imgURL" alt="" @load="imgLoad">
     </div>
     <div class="item-info">
       <div class="item-title">

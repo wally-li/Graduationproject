@@ -12,12 +12,15 @@
       </scroll>
 
       <shop-bottom-bar></shop-bottom-bar>
+
   </div>
 </template>
 
 <script>
 import NavBar from 'components/common/NavBar/NavBar'
-import Scroll from 'components//common/Scroll/Scroll'
+import Scroll from 'components/common/Scroll/Scroll'
+
+
 import ShopList from './childcpn/ShopList'
 import ShopBottomBar from "./childcpn/ShopBottomBar"
 import {mapGetters} from "vuex"
